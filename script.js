@@ -1,57 +1,65 @@
-        // DOM Manipulation Variables
+// DOM Manipulation Variables
 
-        var rock = document.getElementById("rock")
-        var paper = document.getElementById("paper")
-        var scissor = document.getElementById("scissor")
-        var randomGuess = document.getElementById("randomGuess")
-        var result = document.getElementById("result")
-        
-        // assigning variables! 👇
+let rock = document.getElementById("rock")
+let paper = document.getElementById("paper")
+let scissor = document.getElementById("scissor")
+let randomGuess = document.getElementById("randomGuess")
+let result = document.getElementById("result")
 
-        var randomGuess = Math.floor(Math.random() * 3);
-        var randomGuessArray = ["rock", "paper", "scissor"];
-        var userGuessArray = [];
-        var computerGuess = randomGuessArray[randomGuess];
-        console.log(computerGuess)
+let startGame = document.getElementById('start');
+let endGame = document.getElementById('end');
 
-        // EventListeners For The Buttons! 👇
+startGame.addEventListener("click", () => {
 
-        rock.addEventListener("click", function () {
-            playGame("rock")
-        });
+    let randomGuess;
+    let user_guess;
+    let randomGuessArray = ["rock", "paper", "scissor"];
+    let computerGuess;
 
-        paper.addEventListener("click", function () {
-            playGame("paper")
-        });
 
-        scissor.addEventListener("click", function () {
-            playGame("scissor")
-        });
+    rock.addEventListener("click", () => {
+        randomGuess = Math.floor(Math.random() * 3);
+        computerGuess = randomGuessArray[randomGuess]
+        user_guess = "rock";
+        if (user_guess && computerGuess == "rock") {
+            result.innerText = "It's a Draw"
+        }
+        else if (user_guess && computerGuess == "paper") {
+            result.innerText = "Computer Wins"
+        }
+        else if (user_guess && computerGuess == "scissor") {
+            result.innerText = "User Wins"
+        }
+    });
 
-        // Function Required To Play The Game! 👇
+    paper.addEventListener("click", function () {
+        randomGuess = Math.floor(Math.random() * 3);
+        computerGuess = randomGuessArray[randomGuess]
+        user_guess = "paper";
+        if (user_guess && computerGuess == "rock") {
+            result.innerText = "User Wins"
+        }
+        else if (user_guess && computerGuess == "paper") {
+            result.innerText = "It's a draw"
+        }
+        else if (user_guess && computerGuess == "scissor") {
+            result.innerText = "Computer Wins"
+        }
+    });
 
-        function playGame (userGuess){
+    scissor.addEventListener("click", function () {
+        randomGuess = Math.floor(Math.random() * 3);
+        computerGuess = randomGuessArray[randomGuess]
+        user_guess = "scissor";
+        if (user_guess && computerGuess == "rock") {
+            result.innerText = "Computer wins"
+        }
+        else if (user_guess && computerGuess == "paper") {
+            result.innerText = "User Wins"
+        }
+        else if (user_guess && computerGuess == "scissor") {
+            result.innerText = "Draw"
+        }
+    });
+})
 
-            randomGuess.innerText = "Computer has chosen" + computerGuess
-
-            if (userGuess == computerGuess){
-                result.innerText = "Its a Draw 😑"
-            } else if (userGuess == "paper" && computerGuess == "rock"){
-                result.innerText = "Congratulations! You won! 😍"
-            }
-             else if (userGuess == "scissor" && computerGuess == "paper"){
-                result.innerText = "Congratulations! You won! 😍"
-            }
-             else if (userGuess == "rock" && computerGuess == "scissor"){
-                result.innerText = "Congratulations! You won! 😍"
-            } 
-             else if (userGuess == "rock" && computerGuess == "paper"){
-                result.innerText = "You Lost! Your a failuer 🤣"
-            } 
-             else if (userGuess == "scissor" && computerGuess == "rock"){
-                result.innerText = "You Lost! Your a failuer 🤣"
-            } 
-             else if (userGuess == "paper" && computerGuess == "scissor"){
-                result.innerText = "You Lost! Your a failuer 🤣"
-            } 
-        };
